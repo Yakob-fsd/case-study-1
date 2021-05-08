@@ -112,9 +112,6 @@
 
 
 
-
-
-
 <script>
     function check()
     {
@@ -125,19 +122,43 @@
      { checkbox.checked=true; 
          checkbox.disabled=true; } 
   }}
+
+    
     function ch()
     {
     var unmarkedCheckbox = document.querySelectorAll('input[type="checkbox"]:checked');
     for (var checkbox of unmarkedCheckbox) {
     var $input = $('input[type=checkbox]');
     var $count=$input.not(':disabled').filter(':checked').length;
+    var promise = new Promise(function(resolve,reject){
     if($count==5)
     {
-        alert("Congrats 5 tasks has been successfully completed...");
+        resolve("ok");
         exit;
-    }}}
-    
+    }
+     else{
+         reject("not ok");
+     }
+    });
+
+   
+}
+promise.then(function(s){
+        alert("Congrats 5 tasks has been successfully completed...");
+    })
+    .catch(function(e){
+        console.log(e);
+    })
+    }
+
+
     </script>
+
+
+
+
+
+
 
 
 
